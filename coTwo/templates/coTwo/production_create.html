@@ -3,6 +3,10 @@
 
 {% block title %} Production phase {% endblock %}
 {% block content %}
+    <div class="phase"><h1>Materials Production Phase</h1></div>
+    <div class="description">
+        <p>Add the material type and the amount of it used in your project</p>
+    </div>
     <form method = 'POST'>
     {% for hidden_field in form.hidden_fields %}
         {{ hidden_field.errors }}

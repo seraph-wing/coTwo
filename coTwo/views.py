@@ -5,8 +5,10 @@ from django.views import generic
 from . import models
 from django.contrib import messages
 from django.db.models import Sum
-
-
+import plotly.express as px
+import plotly.offline as plot
+import plotly.io as pio
+pio.renderers.default = "browser"
 class IndexView(generic.base.TemplateView):
     template_name = 'coTwo/index.html'
     # context_object_name = 'latest_question_list'
@@ -42,7 +44,14 @@ class ProjectDetailView(generic.DetailView):
         context['carbon_offset'] = context['total_material_production'] + context['total_material_transportation'] + context['total_material_operation'] + context['total_material_maintenance']
         proj = models.Project.objects.get(pk=self.kwargs.get('pk'))
         proj.net_carbon_emissions = context['carbon_offset']
+        x = ['total_material_production','total_material_transportation','total_material_operation','total_material_maintenance']
+        labels = ['Material production phase','Material transportation phase','Project Operation phase','Project Maintenance phase']
+        y = [context[values] for values in x]
+        fig = px.pie(names=labels,values=y,title='Distribution of carbon emission in the project lifecycle')
+        context["pie_chart"] = pio.to_html(fig,full_html=False)
+
         proj.save()
+
         return context
 
 

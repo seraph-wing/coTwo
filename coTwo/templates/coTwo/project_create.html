@@ -3,6 +3,7 @@
 
 {% block title %} Project {% endblock %}
 {% block content %}
+    <div class="phase"><h1>New project</h1></div>
     <h3>please enter a new project name to get started.</h3>
     <form method = 'POST'>
     {% for hidden_field in form.hidden_fields %}

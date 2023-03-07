@@ -3,6 +3,10 @@
 
 {% block title %} Maintenance phase {% endblock %}
 {% block content %}
+    <div class="phase"><h1>Materials Maintenance Phase</h1></div>
+    <div class="description">
+        <p>Depending on the materials that need to be reused, please enter the same details here as the materials Production stage</p>
+    </div>
     <form method = 'POST'>
     {% for hidden_field in form.hidden_fields %}
         {{ hidden_field.errors }}

@@ -3,6 +3,10 @@
 
 {% block title %} Transport phase {% endblock %}
 {% block content %}
+    <div class="description">
+    <div class="phase"><h1>Transportation details</h1></div>
+        <p>Here you have to add the details of the transport being used to transport the given material.</p>
+    </div>
     <form method = 'POST'>
     {% for hidden_field in form.hidden_fields %}
         {{ hidden_field.errors }}

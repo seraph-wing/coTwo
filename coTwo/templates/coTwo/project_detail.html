@@ -3,7 +3,7 @@
 
 {% block title %} {{ project.name }} {% endblock %}
 {% block content %}
-    <h1>Your project is as follows:</h1>
+    <h1>Project summary:</h1>
     <h2>Project name: {{ project.name }}</h2>
     <h2>Project description:</h2>
     <p>{{ project.description }}</p>
@@ -31,7 +31,9 @@
         {% else %}
             <li><p>Material Maintenance data has not been added for this project. Add it <a href={% url "coTwo:maintenance_create" pk=project.pk %}>here</a></p></li>
         {% endif %}
-
+    {% autoescape off %}
+        {{ pie_chart }}
+    {% endautoescape %}
     </ul>
     <h4>The total carbon footprint to offset for {{ project.name }} is : <strong>{{ carbon_offset }} kg CO2 e</strong></h4>
 {% endblock %}

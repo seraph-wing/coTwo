@@ -3,6 +3,10 @@
 
 {% block title %} Transport phase {% endblock %}
 {% block content %}
+    <div class="phase"><h1>Materials Transportation Phase</h1></div>
+    <div class="description">
+        <p>Here you need to specify the amount of round trips used by the material and the distance of the source of materials to the destination </p>
+    </div>
     <form method = 'POST'>
     {% for hidden_field in form.hidden_fields %}
         {{ hidden_field.errors }}
