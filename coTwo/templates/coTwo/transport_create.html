@@ -12,12 +12,34 @@
         {{ hidden_field.errors }}
         {{ hidden_field }}
     {% endfor %}
+    <h5>Transports added so far:</h5>
+    <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Material Name</th>
+            <th scope="col">Transport type</th>
+            <th scope="col">Mileage</th>
+            <th scope="col">Fuel Factor</th>
+        </tr>
+    </thead>
+    <tbody >
+        {% for added_transport in added_transports %}
+            <tr>
+                <td>{{ added_transport }}</td>
+                <td>{{ added_transport.transport_type }}</td>
+                <td>{{ added_transport.mileage }}</td>
+                <td>{{ added_transport.fuel_factor }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
     {% csrf_token %}
     {{ form.non_form_errors }}
     {{ form.as_p }}
     <p class = 'pt-2'>
         <button type="submit" class="btn btn-primary"> Add data </button>
         <a href="{% url 'coTwo:index' %}" role="button" class="btn btn-danger"> Cancel</a>
+        <h4>Move onto <a href="{% url 'coTwo:transport_create' pk=key %}" role="button" class="btn btn-success"> Next</a> phase</h4>
     </p>
     </form>
 {% endblock %}

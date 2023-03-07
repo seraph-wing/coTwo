@@ -97,7 +97,7 @@ class MaterialTransportation(models.Model):
         super(MaterialTransportation, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('coTwo:transport_create',kwargs = {'pk':self.project.pk})
+        return reverse('coTwo:transport_type_create',kwargs = {'pk':self.project.pk})
 
 
 class ProjectTransportation(models.Model):
@@ -117,7 +117,7 @@ class ProjectTransportation(models.Model):
         super(ProjectTransportation, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('coTwo:operation_create', kwargs={'pk': self.project.pk})
+        return reverse('coTwo:transport_create', kwargs={'pk': self.project.pk})
 
 
 
@@ -169,7 +169,7 @@ class MaterialMaintenance(models.Model):
         super(MaterialMaintenance, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('coTwo:project_detail', kwargs={'pk': self.project.pk})
+        return reverse('coTwo:maintenance_create', kwargs={'pk': self.project.pk})
 
 
 

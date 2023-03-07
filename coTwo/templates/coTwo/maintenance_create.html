@@ -12,6 +12,29 @@
         {{ hidden_field.errors }}
         {{ hidden_field }}
     {% endfor %}
+    <h5>Materials added so far:</h5>
+    <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Material Name</th>
+            <th scope="col">Material Quantity</th>
+            <th scope="col">Lifespan of project</th>
+            <th scope="col">rate of repair of material</th>
+            <th scope="col">Repair interval of material</th>
+        </tr>
+    </thead>
+    <tbody >
+        {% for added_material in added_materials %}
+            <tr>
+                <td>{{ added_material }}</td>
+                <td>{{ added_material.material_quantity }} KGs</td>
+                <td>{{ added_material.lifespan }} years</td>
+                <td>{{ added_material.rate_of_repair }} </td>
+                <td>{{ added_material.repair_interval }} Years</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
     {% csrf_token %}
     {{ form.non_form_errors }}
     {{ form.as_p }}
@@ -19,5 +42,6 @@
         <button type="submit" class="btn btn-primary"> Add data </button>
         <a href="{% url 'coTwo:index' %}" role="button" class="btn btn-danger"> Cancel</a>
     </p>
+    <h1><a href="{% url 'coTwo:project_detail' pk=key %}" role="button" class="btn btn-success" style="size: 25pt "> Get Carbon Emissions</a></h1>
     </form>
 {% endblock %}

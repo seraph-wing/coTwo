@@ -95,6 +95,14 @@ class TransportCreateView(generic.CreateView):
     template_name = 'coTwo/transport_create.html'
     fields = ['material', 'transport_type', 'mileage', 'fuel_factor']
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['key'] = self.kwargs.get('pk')
+        context['added_transports'] = models.Project.objects.get(pk=self.kwargs.get('pk')).transport.all()
+
+        print(context)
+        #print(self.get_context_object_name(self))
+        return context
     def form_valid(self, form):
         form.instance.project = models.Project.objects.get(pk=self.kwargs.get('pk'))
         messages.add_message(
@@ -109,6 +117,15 @@ class ProjectTransportCreateView(generic.CreateView):
     model = models.ProjectTransportation
     template_name = 'coTwo/project_transport_create.html'
     fields = ['material', 'num_trips', 'distance']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['key'] = self.kwargs.get('pk')
+        context['added_transports'] = models.Project.objects.get(pk=self.kwargs.get('pk')).project_transport.all()
+
+        print(context)
+        # print(self.get_context_object_name(self))
+        return context
 
     def form_valid(self, form):
         form.instance.project = models.Project.objects.get(pk=self.kwargs.get('pk'))
@@ -141,6 +158,15 @@ class ManagementCreateView(generic.CreateView):
     model = models.MaterialMaintenance
     template_name = 'coTwo/maintenance_create.html'
     fields = ['maintenance_materials', 'material_quantity', 'lifespan', 'rate_of_repair', 'repair_interval']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['key'] = self.kwargs.get('pk')
+        context['added_materials'] = models.Project.objects.get(pk=self.kwargs.get('pk')).maintenance.all()
+
+        #print(context)
+        #print(self.get_context_object_name(self))
+        return context
 
     def form_valid(self, form):
         form.instance.project = models.Project.objects.get(pk=self.kwargs.get('pk'))
