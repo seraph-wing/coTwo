@@ -56,7 +56,7 @@ class MaterialProduction(models.Model):
         return self.material.material_name
 
     def get_absolute_url(self):
-        return reverse('coTwo:transport_type_create',kwargs = {'pk':self.project.pk})
+        return reverse('coTwo:production_create',kwargs = {'pk':self.project.pk})
 
     def save(self, *args, **kwargs):
         if self.material_quantity_unit == 'M3':

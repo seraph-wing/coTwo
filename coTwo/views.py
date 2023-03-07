@@ -68,6 +68,16 @@ class ProductionCreateView(generic.CreateView):
     model = models.MaterialProduction
     template_name = 'coTwo/production_create.html'
     fields = ['material', 'initial_material_quantity', 'material_quantity_unit']
+    context_object_name = 'material'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['key'] = self.kwargs.get('pk')
+        context['added_materials'] = models.Project.objects.get(pk=self.kwargs.get('pk')).production.all()
+
+        print(context)
+        #print(self.get_context_object_name(self))
+        return context
 
     def form_valid(self, form):
         form.instance.project = models.Project.objects.get(pk=self.kwargs.get('pk'))

@@ -1,14 +1,15 @@
-{% extends 'base.html' %}
+{% extends 'coTwo/base.html' %}
 {% load bootstrap5 %}
 
 {% block content %}
     <div class='container-fluid'>
-        <h1>
+        <h3>
             This is the initial project to help construction projects be climate neutral by 2050. we aim to approximate the
             carbon emissions of a particular construction project  so that the project managers can then offset the carbon
             emissions by planting more trees.
-        </h1>
-        <p>Continue <a href=" {% url 'coTwo:project_create' %}">here </a> to start calculating your emissions</p>
-        <p>Continue <a href=" {% url 'coTwo:project_list' %}">here </a> to view current project emissions</p>
+        </h3>
+        <p> <a class="btn btn-success" role="button" href=" {% url 'coTwo:project_create' %}">New Project</a>
+        <a class="btn btn-primary" role="button" href=" {% url 'coTwo:project_list' %}">All projects </a>
+        </p>
      </div>
 {% endblock %}
