@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ production.material.material_name }} {% endblock %}
+
+{% block content %}
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <h2>Production details</h2>
+     <div class="d-flex d-flex-inline"><span class="pe-2">Authors name:</span> <h5>{{ production.material.material_name }}</h5></div>
+{% endblock %}

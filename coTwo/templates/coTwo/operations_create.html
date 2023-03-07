@@ -1,0 +1,19 @@
+{% extends 'coTwo/base.html' %}
+{% load bootstrap5 %}
+
+{% block title %} Operations phase {% endblock %}
+{% block content %}
+    <form method = 'POST'>
+    {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field.errors }}
+        {{ hidden_field }}
+    {% endfor %}
+    {% csrf_token %}
+    {{ form.non_form_errors }}
+    {{ form.as_p }}
+    <p class = 'pt-2'>
+        <button type="submit" class="btn btn-primary"> Add data </button>
+        <a href="{% url 'coTwo:index' %}" role="button" class="btn btn-danger"> Cancel</a>
+    </p>
+    </form>
+{% endblock %}

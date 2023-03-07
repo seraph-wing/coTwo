@@ -1,0 +1,37 @@
+{% extends 'coTwo/base.html' %}
+{% load bootstrap5 %}
+
+{% block title %} {{ project.name }} {% endblock %}
+{% block content %}
+    <h1>Your project is as follows:</h1>
+    <h2>Project name: {{ project.name }}</h2>
+    <h2>Project description:</h2>
+    <p>{{ project.description }}</p>
+{#    <p>Proceed <a href="{% url 'coTwo:production_create' project.pk %}">here</a> for adding your materials for the project lifecycle</p>#}
+    <a href="{% url 'coTwo:index' %}" role="button" class=""btn btn-danger"> Home</a>
+    <h2>Carbon emissions (kgCO2 equivalent) per phase:</h2>
+    <ul>
+        {% if total_material_production != 0%}
+            <li><p>Material Production phase : <strong>{{total_material_production |floatformat:3 }} kgCO2 equivalent </strong></p></li>
+        {% else %}
+            <li><p>Material Production data has not been added for this project. Add it <a href={% url "coTwo:production_create" pk=project.pk %}>here</a></p></li>
+        {% endif %}
+        {% if total_material_transportation  != 0%}
+            <li><p>Material Transport phase : <strong>{{ total_material_transportation |floatformat:3}} kgCO2 equivalent</strong></p></li>
+        {% else %}
+            <li><p>Material Transport data has not been added for this project. Add it <a href={% url "coTwo:transport_create" pk=project.pk %}>here</a></p></li>
+        {% endif %}
+        {% if total_material_operation  != 0%}
+           <li><p>Material Operations phase : <strong>{{ total_material_operation |floatformat:3}} kgCO2 equivalent</strong></p></li>
+        {% else %}
+            <li><p>Material Transport data has not been added for this project. Add it <a href={% url "coTwo:operation_create" pk=project.pk %}>here</a></p></li>
+        {% endif %}
+        {% if total_material_maintenance  != 0 %}
+          <li><p>Material Maintenance phase : <strong>{{ total_material_maintenance|floatformat:3 }} kgCO2 equivalent</strong></p></li>
+        {% else %}
+            <li><p>Material Maintenance data has not been added for this project. Add it <a href={% url "coTwo:maintenance_create" pk=project.pk %}>here</a></p></li>
+        {% endif %}
+
+    </ul>
+    <h4>The total carbon footprint to offset for {{ project.name }} is : <strong>{{ carbon_offset }} kg CO2 e</strong></h4>
+{% endblock %}

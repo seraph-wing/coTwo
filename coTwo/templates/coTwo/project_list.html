@@ -1,0 +1,17 @@
+{% extends 'coTwo/base.html' %}
+{% load bootstrap5 %}
+
+{% block title %} List of Projects {% endblock %}
+
+{%block content %}
+    <h1>Projects</h1>
+    <dl>
+    {% for project in object_list %}
+        <dt><a href={% url 'coTwo:project_detail' pk=project.pk %}>{{ project.name }}</a></dt>
+        <dd>{{ project.description }}</dd>
+        <hr>
+    {% empty %}
+        <dt>No articles yet.</dt>
+    {% endfor %}
+    </dl>
+{% endblock %}
